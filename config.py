@@ -33,6 +33,8 @@ class Config:
                                  'size.')
         parser.add_argument('--predict', action='store_true',
                             help='execute the interactive prediction shell')
+        parser.add_argument("-i", "--input", dest="predict_path",
+                            help="path to the input folder for all files to predict", required=False)
         parser.add_argument("-fw", "--framework", dest="dl_framework", choices=['keras', 'tensorflow'],
                             default='tensorflow', help="deep learning framework to use.")
         parser.add_argument("-v", "--verbose", dest="verbose_mode", type=int, required=False, default=1,
@@ -73,6 +75,7 @@ class Config:
         args = self.arguments_parser().parse_args()
         # Automatically filled, do not edit:
         self.PREDICT = args.predict
+        self.PREDICT_PATH = args.predict_path
         self.MODEL_SAVE_PATH = args.save_path
         self.MODEL_LOAD_PATH = args.load_path
         self.TRAIN_DATA_PATH_PREFIX = args.data_path
@@ -85,6 +88,7 @@ class Config:
         self.LOGS_PATH = args.logs_path
         self.DL_FRAMEWORK = 'tensorflow' if not args.dl_framework else args.dl_framework
         self.USE_TENSORBOARD = args.use_tensorboard
+
 
     def __init__(self, set_defaults: bool = False, load_from_args: bool = False, verify: bool = False):
         self.NUM_TRAIN_EPOCHS: int = 0
@@ -114,6 +118,7 @@ class Config:
 
         # Automatically filled by `args`.
         self.PREDICT: bool = False   # TODO: update README;
+        self.PREDICT_PATH: Optional[str] = None
         self.MODEL_SAVE_PATH: Optional[str] = None
         self.MODEL_LOAD_PATH: Optional[str] = None
         self.TRAIN_DATA_PATH_PREFIX: Optional[str] = None

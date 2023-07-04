@@ -4,6 +4,8 @@ from interactive_predict import InteractivePredictor
 from folder_predict import FolderPredictor
 from model_base import Code2VecModelBase
 
+# Command:
+#python code2vec.py --load models/java14_model/saved_model_iter8.release --predict
 
 def load_model_dynamically(config: Config) -> Code2VecModelBase:
     assert config.DL_FRAMEWORK in {'tensorflow', 'keras'}
