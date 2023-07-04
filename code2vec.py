@@ -1,6 +1,7 @@
 from vocabularies import VocabType
 from config import Config
 from interactive_predict import InteractivePredictor
+from folder_predict import FolderPredictor
 from model_base import Code2VecModelBase
 
 
@@ -33,6 +34,7 @@ if __name__ == '__main__':
             config.log(
                 str(eval_results).replace('topk', 'top{}'.format(config.TOP_K_WORDS_CONSIDERED_DURING_PREDICTION)))
     if config.PREDICT:
-        predictor = InteractivePredictor(config, model)
+        # predictor = InteractivePredictor(config, model)
+        predictor = FolderPredictor(config, model)
         predictor.predict()
     model.close_session()
